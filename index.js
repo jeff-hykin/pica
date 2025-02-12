@@ -1,17 +1,18 @@
+'use strict';var module = module||{};module.exports=module.exports||{};
 'use strict';
 
 
-const assign        = require('object-assign');
-const webworkify    = require('webworkify');
+import assign from "https://esm.sh/object-assign@4.1.1"
+import webworkify from "./lib/webworkify.js"
 
 
-const MathLib       = require('./lib/mathlib');
-const Pool          = require('./lib/pool');
-const utils         = require('./lib/utils');
-const worker        = require('./lib/worker');
-const createStages  = require('./lib/stepper');
-const createRegions = require('./lib/tiler');
-const filter_info   = require('./lib/mm_resize/resize_filter_info');
+import MathLib from "./lib/mathlib.js"
+import Pool from "./lib/pool.js"
+import utils from "./lib/utils.js"
+import worker from "./lib/worker.js"
+import createStages from "./lib/stepper.js"
+import createRegions from "./lib/tiler.js"
+import filter_info from "./lib/mm_resize/resize_filter_info.js"
 
 
 // Deduplicate pools & limiters with the same configs
@@ -63,7 +64,7 @@ let CAN_USE_CIB_REGION_FOR_IMAGE  = false;
 
 function workerFabric() {
   return {
-    value: webworkify(worker),
+    value: webworkify(worker, { bundleFn: "/webworkify_fake_location/main.js", sources: "/webworkify_fake_location/", }),
     destroy: function () {
       this.value.terminate();
 
@@ -156,7 +157,7 @@ Pica.prototype.init = function () {
       // IE <= 11 don't allow to create webworkers from string. We should check it.
       // https://connect.microsoft.com/IE/feedback/details/801810/web-workers-from-blob-urls-in-ie-10-and-11
       try {
-        let wkr = require('webworkify')(function () {});
+        let wkr = webworkify(function () {}, { bundleFn: "/webworkify_fake_location/main.js", sources: "/webworkify_fake_location/" });
         wkr.terminate();
         this.features.ww   = true;
 
@@ -727,3 +728,5 @@ Pica.prototype.debug = function () {};
 
 
 module.exports = Pica;
+
+;export default module.exports
