@@ -1,3 +1,4 @@
+var exports = {};
 // PPM image format save/load. This format is very easy
 // to read/write without canvas and extra dependencies.
 //
@@ -127,3 +128,5 @@ exports.decode = decode;
   });
 
 });*/
+
+;export default exports

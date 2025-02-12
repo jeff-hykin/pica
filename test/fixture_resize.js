@@ -2,16 +2,18 @@
 //
 'use strict';
 
-const fs         = require('fs');
-const path       = require('path');
-const pica       = require('../index.js');
-const pixelmatch = require('pixelmatch');
+import fs from "node:fs"
+import path from "node:path"
+import pica from "../index.js"
+import pixelmatch from "https://esm.sh/pixelmatch" /* CHECKME: unknown that was prefixed */
 
-const ppm        = require('./ppm');
+import ppm from "./ppm.js"
 
-const FIXTURES_DIRECTORY = path.join(__dirname, 'fixtures');
-const OUTPUT_DIRECTORY   = path.join(__dirname, '..');
+import { FileSystem, glob } from "https://deno.land/x/quickr@0.7.1/main/file_system.js"
+const FIXTURES_DIRECTORY = path.join(FileSystem.thisFolder, 'fixtures');
+const OUTPUT_DIRECTORY   = path.join(FileSystem.thisFolder, '..');
 
+import { describe, it } from "https://deno.land/std@0.224.0/testing/bdd.ts"
 
 describe('Fixture resize', () => {
 

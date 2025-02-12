@@ -1,8 +1,8 @@
 'use strict';
 
 
-const _pica  = require('../index.js');
-const assert = require('assert');
+import _pica from "../index.js"
+import assert from "node:assert"
 
 
 describe('API', () => {

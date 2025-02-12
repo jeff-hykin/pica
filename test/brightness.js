@@ -3,8 +3,9 @@
 'use strict';
 
 
-const pica   = require('../index.js')();
-const assert = require('assert');
+import _pica from "../index.js"
+import assert from "node:assert"
+const pica  = _pica()
 
 
 function fill(arr, val) {

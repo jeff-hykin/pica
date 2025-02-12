@@ -1,8 +1,8 @@
 'use strict';
 
 
-const assert       = require('assert');
-const createStages = require('../lib/stepper');
+import assert from "node:assert"
+import createStages from "../lib/stepper.js"
 
 const TILE_SIZE = 1024;
 const TILE_BORDER = 3;
