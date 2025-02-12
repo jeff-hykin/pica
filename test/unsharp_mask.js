@@ -1,7 +1,10 @@
 'use strict';
 
 import assert from "node:assert"
-import mathlib_raw from "https://esm.sh/multimath" /* CHECKME: unknown that was prefixed */
+import { describe, it } from "https://deno.land/std@0.224.0/testing/bdd.ts"
+
+import {glur_mono16, Multimath as mathlib_raw } from '../lib/imports.js'
+import mmUnsharpMask from '../lib/mm_unsharp_mask/index.js'
 
 
 function fill(target, arr) {
@@ -16,7 +19,7 @@ describe('unsharp_mask', () => {
   describe('glur_mono16', () => {
 
     it('js', () => {
-      const glur_js = require('glur/mono16')/* FIXME: can't auto handle deep require (await import('glur/mono16')) */;
+      const glur_js = glur_mono16
 
       let sample = new Uint16Array(100 * 100);
 
@@ -31,8 +34,8 @@ describe('unsharp_mask', () => {
 
 
     it('wasm', () => {
-      const glur_js   = require('glur/mono16')/* FIXME: can't auto handle deep require (await import('glur/mono16')) */;
-      const mlib_wasm = mathlib_raw({ js: false }).use(require('../lib/mm_unsharp_mask')/* FIXME: can't auto handle deep require (await import('../lib/mm_unsharp_mask')) */);
+      const glur_js   = glur_mono16
+      const mlib_wasm = mathlib_raw({ js: false }).use(mmUnsharpMask);
 
       // unsharp_mask wasm module does not provide API for direct glur16 call
       // Here is simple wrapper for testing
@@ -96,7 +99,7 @@ describe('unsharp_mask', () => {
 
 
     it('js should not throw without wasm', () => {
-      const mlib = mathlib_raw({ wasm: false }).use(require('../lib/mm_unsharp_mask')/* FIXME: can't auto handle deep require (await import('../lib/mm_unsharp_mask')) */);
+      const mlib = mathlib_raw({ wasm: false }).use(mmUnsharpMask);
 
       let sample = createSample(100, 100);
       mlib.unsharp_mask(sample, 100, 100, 80, 2, 2);
@@ -104,8 +107,8 @@ describe('unsharp_mask', () => {
 
 
     it('wasm', () => {
-      const mlib_js = mathlib_raw({ wasm: false }).use(require('../lib/mm_unsharp_mask')/* FIXME: can't auto handle deep require (await import('../lib/mm_unsharp_mask')) */);
-      const mlib_wasm = mathlib_raw({ js: false }).use(require('../lib/mm_unsharp_mask')/* FIXME: can't auto handle deep require (await import('../lib/mm_unsharp_mask')) */);
+      const mlib_js = mathlib_raw({ wasm: false }).use(mmUnsharpMask);
+      const mlib_wasm = mathlib_raw({ js: false }).use(mmUnsharpMask);
 
       let sample_js   = createSample(100, 100);
       let sample_wasm = createSample(100, 100);
