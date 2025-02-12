@@ -3,6 +3,7 @@
 
 import assert from "node:assert"
 import createStages from "../lib/stepper.js"
+import { describe, it } from "https://deno.land/std@0.224.0/testing/bdd.ts"
 
 const TILE_SIZE = 1024;
 const TILE_BORDER = 3;
