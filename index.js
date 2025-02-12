@@ -1,4 +1,3 @@
-'use strict';var module = module||{};module.exports=module.exports||{};
 'use strict';
 
 
@@ -726,7 +725,4 @@ Pica.prototype.toBlob = function (canvas, mimeType, quality) {
 
 Pica.prototype.debug = function () {};
 
-
-module.exports = Pica;
-
-;export default module.exports
+export default Pica;
