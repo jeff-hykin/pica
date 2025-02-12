@@ -1,5 +1,5 @@
 'use strict';
-
+import { describe, it } from "https://deno.land/std@0.224.0/testing/bdd.ts"
 import _pica from "../index.js"
 import assert from "node:assert"
 const pica  = _pica()
