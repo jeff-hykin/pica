@@ -2,7 +2,7 @@
 'use strict';
 
 
-import assign from "https://esm.sh/object-assign@4.1.1"
+import {assign} from "./lib/imports.js"
 import webworkify from "./lib/webworkify.js"
 
 
